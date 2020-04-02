@@ -5,7 +5,7 @@ import url from 'url';
 
 const DEFAULT_HEIGHT = 768;
 const DEFAULT_WIDTH = 1024;
-// TODO: Currently this assumes there will be an 'index.html' file in the 
+// TODO: Currently this assumes there will be an 'index.html' file in the
 // directory above, this might not be the most atomic? /shrug
 const DEFAULT_URL = (new url.URL(path.join(__dirname, '../index.html'), 'file:/')).toString();
 

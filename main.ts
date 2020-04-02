@@ -1,6 +1,6 @@
 import Window from './window';
 
-(function () {
-
-       return Window.create();
-}());
+Window.create()
+  .catch((err) => {
+    throw err;
+  });

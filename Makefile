@@ -12,11 +12,10 @@ SRC = $(PACKAGE)/src
 ASSETS = $(PACKAGE)/assets
 DIST = $(PACKAGE)/dist
 
-# .PHONY: coverage test
+.PHONY: default
+default: clean compile build test lint coverage package
 
-# default: clean build test coverage compile distribute
-
-# run: build test start
+run: clean compile build start
 
 dependencies:
 	$(NPM_CMD) install
@@ -24,24 +23,21 @@ dependencies:
 lint:
 	$(NPM_CMD) run lint
 
-test:
+test: compile build
 	$(NPM_CMD) test
 
 coverage:
 	$(NPM_CMD) run coverage
 
-# clean:
-# 	rm -r $(DIST) | true #2>&1 >/dev/null #> /dev/null 2>&1
-# 	mkdir -p $(DIST)
-# 	
-# 	rm -r $(ASSETS)/source.js* | true #2>&1 >/dev/null #> /dev/null 2>&1
-# 	
-# 	rm -r node_modules/ | true
+clean:
+	rm -r $(DIST) | true #2>&1 >/dev/null #> /dev/null 2>&1
+	mkdir -p $(DIST)
 
 build:
 	$(NPM_CMD) run build
+	cd $(DIST); $(NPM_CMD) install --production
 
-build:
+compile:
 	$(NPM_CMD) run compile
 
 start:
