@@ -11,10 +11,12 @@ export class Default extends Component<Props, {}> {
     const { nodeVersion, chromeVersion, electronVersion } = this.props;
 
     return [
-      <h1>Hello World!</h1>,
-      <p>We are using Node.js <span>{ nodeVersion }</span>,</p>,
-      <p>Chromium <span>{ chromeVersion }</span>,</p>,
-      <p>and Electron <span>{ electronVersion }</span>.</p>,
+      <h1 key="title">Hello World!</h1>,
+      <p key="version">
+        We are using Node.js <span>{ nodeVersion }</span>,<br />
+        Chromium <span>{ chromeVersion }</span>,<br />
+        and Electron <span>{ electronVersion }</span>.
+      </p>,
     ];
   }
 };

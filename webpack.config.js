@@ -12,7 +12,10 @@ module.exports = {
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: ['.ts', '.tsx']
+    extensions: ['.ts', '.tsx'],
+    alias: {
+      '/assets': path.resolve(__dirname, './assets')
+    }
   },
 
   // The guts of the webpack configuration.
@@ -21,7 +24,7 @@ module.exports = {
 
       // Images, Fonts
       {
-        test: /\.jpe?g|gif|png|svg|eot/,
+        test: /\.jpe?g|gif|png|svg|woff2/,
         use: [
           {
             loader: 'file-loader',
@@ -36,20 +39,19 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: [
-          // { loader: 'extract-loader' },
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              // sourceMap: false
+              // We push the css into a /assets/css/ folder which breaks the 
+              // assets when they are loaded. This fixes that.
+              publicPath: '../..',
             },
           },
           {
             loader: 'css-loader',
             options: {
-              // sourceMap: false,
               modules: {
                 mode: 'global',
-                // localIdentName: '[path][name]',
                 context: path.resolve(__dirname, 'src'),
               },
             },
@@ -59,8 +61,6 @@ module.exports = {
             options: {
               // includePaths: ['./node_modules'],
               implementation: require('sass'),
-              // sourceMap: false,
-              // fiber: require('fibers'),
             }
           },
         ],
@@ -106,9 +106,9 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
           chunks: 'all'
-        }
-      }
-    }
+        },
+      },
+    },
   },
 
   // When importing a module whose path matches one of the following, just

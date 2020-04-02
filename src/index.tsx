@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 
 import { Default } from './Default';
 
-import '../assets/fonts/meslo.css';
-import '../assets/css/base.css';
+// Global Stylesheets
+import '../assets/css/meslo.scss';
+import '../assets/css/base.scss';
 
 ReactDOM.render(
   <Default
