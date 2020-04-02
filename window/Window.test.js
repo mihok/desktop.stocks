@@ -26,7 +26,7 @@ describe('Electron', function () {
   afterEach(async function () {
 
     if (driver && driver.isRunning()) {
-      await t.stop();
+      await driver.stop();
     }
 
   });
@@ -35,11 +35,11 @@ describe('Electron', function () {
   // component tests in an desktop application.
   it('shows an initial window', async function () {
 
-    const logs = await driver.client.getMainProcessLogs();
+    // const logs = await driver.client.getMainProcessLogs();
 
-    logs.forEach(function (log) {
-      console.log(log);
-    });
+    // logs.forEach(function (log) {
+    //   console.log(log);
+    // });
 
     const count = await driver.client.getWindowCount();
     
