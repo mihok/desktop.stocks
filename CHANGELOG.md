@@ -2,5 +2,6 @@
 ------------------
 
 * Initial Commit!
-* Set up `npm` tooling, run scripts
-* Set up initial basic test
+* Built from desktop.skeleton [0]
+
+[0] https://github.com/mihok/desktop.skeleton

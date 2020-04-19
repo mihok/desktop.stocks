@@ -1,9 +1,7 @@
-# Desktop
-## Skeleton
+# Visual Improved Improved JS CAD
 
-Desktop Skeleton to use for various tooling, leverages TypeScript (+ TSLint),
-React, Electron, and Jest (for testing.)
+Desktop implementation of OpenJSCAD leveraging Vi(m) keyboard-centric command
+line input.
 
-### Usage
-
-```TBD```
+Intended to be used along side of Vim or another editor, but does contain a
+simple code editor interface for quick experimentation.

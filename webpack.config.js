@@ -118,6 +118,9 @@ module.exports = {
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
+    'three': 'THREE',
+    // Needed for react-three-fiber
+    '@juggle/resize-observer': 'ResizeObserver',
   },
 
   // Entrypoint
