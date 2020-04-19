@@ -43,7 +43,10 @@ compile:
 start:
 	$(NPM_CMD) start
 
-# compile-linux:
+package:
+	exit 0;
+
+# package-linux:
 # 	@echo "\nLinux\n"
 # 	
 # 	$(NPM_CMD) run compile:linux -- \
@@ -58,7 +61,7 @@ start:
 # 	--appname=$(APP_NAME) \
 # 	--app-copyright=$(LICENSE)
 # 
-# compile-win:
+# package-win:
 # 	@echo "\nWindows\n"
 # 	$(NPM_CMD) run compile:win -- \
 # 	--ignore=README.md \
@@ -74,7 +77,7 @@ start:
 # 	--appname=$(APP_NAME) \
 # 	--app-copyright=$(LICENSE)
 # 
-# compile-osx:
+# package-osx:
 # 	@echo "\nOSX\n"
 # 	$(NPM_CMD) run compile:osx -- \
 # 	--ignore=README.md \

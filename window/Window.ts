@@ -10,6 +10,7 @@ const DEFAULT_WIDTH = 1024;
 const DEFAULT_URL = (new url.URL(path.join(__dirname, '../index.html'), 'file:/')).toString();
 
 export interface WebPreferences {
+  contextIsolation: boolean
   devTools: boolean
   preload?: string
 }
@@ -32,12 +33,16 @@ export class Window {
   window: BrowserWindow | null;
 
   // Shortcut function to create an instance of Window.
-  static create ( preload?: string, urlPath?: string, width?: number, height?: number ) {
+  static create ( urlPath?: string, preloadPath?: string, width?: number, height?: number ) {
 
     const w = new Window();
 
     if (typeof urlPath !== 'undefined') {
       w.url = urlPath as string;
+    }
+
+    if (typeof preloadPath !== 'undefined') {
+      w.preload = preloadPath as string;
     }
 
     if (typeof width !== 'undefined') {
@@ -66,11 +71,12 @@ export class Window {
     // be closed automatically when the JavaScript object is garbage collected.
 
     const webPreferences: WebPreferences = {
-        devTools: process.env.NODE_ENV !== 'dev' ? false : true,
+      contextIsolation: true,
+      devTools: process.env.NODE_ENV !== 'dev' ? false : true,
     };
 
     // Have we defined a preload script?
-    if (!this.preload.length) {
+    if (this.preload.length) {
       webPreferences.preload = this.preload;
     }
 
