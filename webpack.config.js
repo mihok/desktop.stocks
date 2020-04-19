@@ -3,6 +3,7 @@ const path = require('path');
 // Plugins
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   mode: process.env.NODE_ENV === 'dev' ? 'development' : 'production',
@@ -97,6 +98,9 @@ module.exports = {
       { from: 'index.html' },
       { from: 'package.json' },
     ]),
+
+    // Keep a handle on our bundle to see if we can optimize
+    // new BundleAnalyzerPlugin(),
   ],
 
   optimization: {

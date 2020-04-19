@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "removeComments": true,
     "esModuleInterop": true,
     "target": "esnext",
     "noImplicitAny": true,
@@ -27,6 +28,7 @@
   },
   "include": [
     "window/*",
-    "main.ts"
+    "main.ts",
+    "preload.ts"
   ]
 }

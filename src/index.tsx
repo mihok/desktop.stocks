@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Default } from './Default';
+import { Default } from './DefaultComponent';
 
 // Global Stylesheets
 import '../assets/css/meslo.scss';
 import '../assets/css/base.scss';
 
+// Our injected versions object from the preload script.
+declare global {
+  interface Window  {
+    versions: { [column: string]: string };
+  }
+}
+
+const { versions } = window;
+
 ReactDOM.render(
   <Default
-    chromeVersion={ process.versions.chrome }
-    nodeVersion={ process.versions.node }
-    electronVersion={ process.versions.electron }
+    nodeVersion={versions.node}
+    chromeVersion={versions.chrome}
+    electronVersion={versions.electron}
   />,
   document.getElementById('app')
 );
