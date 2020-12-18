@@ -12,8 +12,9 @@ module.exports = {
   devtool: 'source-map',
 
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: ['.ts', '.tsx'],
+    // Add '.ts' and '.tsx' as resolvable extensions. Include .js and .jsx for
+    // external libraries otherwise babel complains.
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       '/assets': path.resolve(__dirname, './assets')
     }
@@ -124,7 +125,7 @@ module.exports = {
     'react-dom': 'ReactDOM',
     'three': 'THREE',
     // Needed for react-three-fiber
-    '@juggle/resize-observer': 'ResizeObserver',
+    // '@juggle/resize-observer': 'ResizeObserver',
   },
 
   // Entrypoint
