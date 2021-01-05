@@ -95,10 +95,12 @@ module.exports = {
 
     // Copy index.html and package.json so we can build the distribution just
     // from the 'dist/' folder.
-    new CopyPlugin([
-      { from: 'index.html' },
-      { from: 'package.json' },
-    ]),
+    new CopyPlugin({
+      patterns: [
+        { from: 'index.html' },
+        { from: 'package.json' },
+      ]
+    }),
 
     // Keep a handle on our bundle to see if we can optimize
     // new BundleAnalyzerPlugin(),
