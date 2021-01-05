@@ -17,7 +17,7 @@
     "build": "npm run webpack -- --progress --colors --hide-modules",
     "compile": "npm run tsc -- --pretty",
     "package": "echo \"NotImplementedError: /shrug\" && exit 1",
-    "start": "npm run electron -- ."
+    "start": "npm run compile && npm run build && npm run electron -- ."
   },
   "keywords": [
     "scad"

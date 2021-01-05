@@ -11,27 +11,33 @@ export class Application extends Component<Props> {
   onKeyDown (event: KeyboardEvent) {
     const { handleKeyDown } = this.props;
   
+    console.log('KEYDOWN');
     handleKeyDown(event.key.toLowerCase());
   }
 
   onKeyUp (event: KeyboardEvent) {
     const { handleKeyUp } = this.props;
 
+    console.log('KEYUP');
     handleKeyUp(event.key.toLowerCase());
   }
 
   componentDidMount () {
+    console.log('DID MOUNT');
     document.addEventListener('keydown', this.onKeyDown.bind(this));
     document.addEventListener('keyup', this.onKeyUp.bind(this));
   }
 
   componentWillUnmount() {
+    console.log('DID UNMOUNT');
     document.removeEventListener('keydown', this.onKeyDown.bind(this));
     document.removeEventListener('keyup', this.onKeyUp.bind(this));
   }
 
   render () {
-    return <ThreeCanvas />
+    return [
+      <ThreeCanvas />,
+    ];
   }
 };
 

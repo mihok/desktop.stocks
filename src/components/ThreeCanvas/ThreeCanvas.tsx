@@ -17,15 +17,15 @@ export interface State {
 
 export default class ThreeCanvas extends Component<{}, {}> {
   async onMouseDown () {
-
+    console.log('CLICK');
   }
 
   async onMouseUp () {
-
+    console.log('UNCLICK');
   }
 
   async onMouseWheel () {
-
+    console.log('ZOOM');
   }
 
   render () {

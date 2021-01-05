@@ -15,6 +15,7 @@ export function UserInterfaceReducer (
   action: KeyAction & IAction,
 ): UserInterfaceState {
   let result: UserInterfaceState = state;
+  console.log('STATE', state, action);
 
   switch(action.type) {
     case 'KEY_DOWN':
