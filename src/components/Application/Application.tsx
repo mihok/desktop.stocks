@@ -1,50 +1,62 @@
 import React, { Component } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from'../../state';
-import { KeyDownAction, KeyUpAction } from '../../state/UserInterface';
 
-import ThreeCanvas from '../ThreeCanvas';
+import AlphaVantageService from '../../services/AlphaVantageService';
+
+import { Graph } from '../Graph';
+import { StatusBar } from '../StatusBar'; 
+
+import './styles.scss';
 
 type Props = ConnectedProps<typeof connector>;
 
+type State = {
+  innerWidth: number;
+  innerHeight: number;
+}
+
 export class Application extends Component<Props> {
-  onKeyDown (event: KeyboardEvent) {
-    const { handleKeyDown } = this.props;
-  
-    console.log('KEYDOWN');
-    handleKeyDown(event.key.toLowerCase());
+  state: State = {
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
   }
 
-  onKeyUp (event: KeyboardEvent) {
-    const { handleKeyUp } = this.props;
+  handleResize () {
+    const { innerWidth, innerHeight } = window;
 
-    console.log('KEYUP');
-    handleKeyUp(event.key.toLowerCase());
+    this.setState({
+      innerWidth,
+      innerHeight,
+    });
   }
 
-  componentDidMount () {
-    console.log('DID MOUNT');
-    document.addEventListener('keydown', this.onKeyDown.bind(this));
-    document.addEventListener('keyup', this.onKeyUp.bind(this));
+  async componentDidMount () {
+    window.addEventListener('resize', this.handleResize.bind(this));
+
+    await AlphaVantageService.getIntradayBySymbol('BB');
   }
 
-  componentWillUnmount() {
-    console.log('DID UNMOUNT');
-    document.removeEventListener('keydown', this.onKeyDown.bind(this));
-    document.removeEventListener('keyup', this.onKeyUp.bind(this));
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize.bind(this));
   }
 
   render () {
+    const { innerWidth, innerHeight } = this.state;
+
     return [
-      <ThreeCanvas />,
+      <section key="content">
+        <Graph
+          data={[]}
+          width={innerWidth}
+          height={innerHeight} />
+      </section>,
+      <StatusBar key="command" />,
     ];
   }
 };
 
-const mapDispatch = (dispatch: any) => ({
-  handleKeyDown: (key: string) => dispatch(KeyDownAction({ key })),
-  handleKeyUp: (key: string) => dispatch(KeyUpAction({ key })),
-});
+const mapDispatch = (dispatch: any) => ({ });
 
 const mapState = (state: RootState) => ({ });
 

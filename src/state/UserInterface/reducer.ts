@@ -15,16 +15,17 @@ export function UserInterfaceReducer (
   action: KeyAction & IAction,
 ): UserInterfaceState {
   let result: UserInterfaceState = state;
-  console.log('STATE', state, action);
 
   switch(action.type) {
     case 'KEY_DOWN':
       const newKeys = new Set([...state.keys, action.key]);
 
+      console.log('KEY_DOWN', newKeys);
+
       result = {
+        ...state,
         keyDown: true,
         keys: [...newKeys],
-        ...state,
       };
 
       break;
@@ -34,15 +35,15 @@ export function UserInterfaceReducer (
       updatedKeys.delete(action.key);
 
       result = {
+        ...state,
         keyDown: state.keys ? true : false,
         keys: [...updatedKeys],
-        ...state,
       };
 
       break;
     default: break;
   }
 
-  console.log('STATE', result.keys);
+  console.log('STATE', result);
   return result;
 }

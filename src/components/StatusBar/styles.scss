@@ -1,0 +1,17 @@
+nav {
+  padding: 0.5rem 2rem;
+
+  flex-grow: 1;
+}
+
+nav.active {
+  background: black;
+}
+
+nav input {
+  width: 100%;
+
+  outline: none;
+  border: 0;
+  background: black;
+}

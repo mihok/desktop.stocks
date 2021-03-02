@@ -1,4 +1,4 @@
-
+NODE_ENV ?= dev
 NPM_CMD ?= npm
 ZIP_CMD ?= tar
 ZIP_OPTIONS ?= -zcf
@@ -41,7 +41,7 @@ compile:
 	$(NPM_CMD) run compile
 
 start:
-	$(NPM_CMD) start
+	NODE_ENV=$(NODE_ENV) $(NPM_CMD) start
 
 package:
 	exit 0;
